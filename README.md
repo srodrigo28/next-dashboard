@@ -76,14 +76,11 @@ https://www.youtube.com/watch?v=PqRe0Q9b5QI
     Sider-bar *** 10:50 *** iniciando
     Sider-bar *** 15:38 *** Funcionando
     Sider-bar *** 15:45 *** Lucid-Icons
-    ``` 15:45
+    ```
     npm install lucide-react
     ```
     Sider-bar *** 16:55 *** Menu Mobile
-    Sider-bar *** 26:00 *** Menu Web Lateral
-    ``` 15:45
-    npm install lucide-react
-    ```
+    Sider-bar *** 36:00 *** Menu Web Lateral
 
 ##### conteúdo do side-bar
 ```
