@@ -1,8 +1,8 @@
 
 export default function Home() {
   return (
-    <main>
-      <h1>Super ShadCN UI</h1>
+    <main className='p-5'>
+      <h1 className="font-medium text-3xl">Shadcn-UI</h1>
     </main>
   );
 }
