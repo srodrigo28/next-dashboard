@@ -9,7 +9,7 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON;
 const supabase = createClient(supabaseUrl as string, supabaseAnonKey as string);
 
 type TypeGestor = {
-  id: string | number
+  id: any
   nome: string
   sexo: string
   created_at: string
