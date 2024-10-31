@@ -8,15 +8,17 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl as string, supabaseAnonKey as string);
 
-type Igestor {
+type TypeGestor = {
   id: string | number
+  nome: string
+  sexo: string
+  created_at: string
 }
 
 export default function Home() {
-
   const [nome, setNome] = useState('');
   const [sexo, setSexo] = useState('');
-  const [posts, setPosts] = useState([]);
+  const [gestor, setGestor] = useState<TypeGestor[]>([]);
 
   const handleSubmit = async (e : any) => {
     e.preventDefault();
@@ -30,14 +32,14 @@ export default function Home() {
     if (error) {
       console.error('Error inserting data:', error);
     } else {
-      console.log('Post added:', data);
+      console.log('Data fetch:', data);
       setNome('');
       setSexo('');
-      fetchPosts(); // Recarrega a lista de posts
+      setGestor(gestor); // Recarrega a lista de posts
     }
   };
 
-  const fetchPosts = async () => {
+  const fetchGestor = async () => {
     const { data, error } = await supabase
       .from('gestores')
       .select('*')
@@ -46,12 +48,12 @@ export default function Home() {
     if (error) {
       console.error('Error fetching posts:', error);
     } else {
-      setPosts(data as any);
+      setGestor(data);
     }
   };
 
   useEffect(() => {
-    fetchPosts(); // Chama a função ao carregar o componente
+    fetchGestor(); // Chama a função ao carregar o componente
   }, []);
 
   return (
@@ -80,7 +82,7 @@ export default function Home() {
 
       <h2>Posts</h2>
       <div className='flex gap-2 flex-col '>
-        {posts.map(item => (
+        {gestor.map( item => (
           <div key={item.id} className='bg-green-500 p-2 rounded-md text-white'>
             <h3>{item.nome}</h3>
             <p>{item.sexo}</p>
