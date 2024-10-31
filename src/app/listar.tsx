@@ -1,5 +1,3 @@
-"use client"
-
 // pages/post.js
 import { createClient } from '@supabase/supabase-js';
 import { useEffect, useState } from 'react';
@@ -8,27 +6,26 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl as string, supabaseAnonKey as string);
 
-export default function Home() {
-
-  const [nome, setNome] = useState('');
-  const [sexo, setSexo] = useState('');
+export default function Listar() {
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
   const [posts, setPosts] = useState([]);
 
   const handleSubmit = async (e : any) => {
     e.preventDefault();
     
     const { data, error } = await supabase
-      .from('gestores')
+      .from('posts')
       .insert([
-        { nome, sexo }
+        { title, content }
       ]);
 
     if (error) {
       console.error('Error inserting data:', error);
     } else {
       console.log('Post added:', data);
-      setNome('');
-      setSexo('');
+      setTitle('');
+      setContent('');
       fetchPosts(); // Recarrega a lista de posts
     }
   };
@@ -51,24 +48,20 @@ export default function Home() {
   }, []);
 
   return (
-    <main className='p-5 px-28'>
-      <h1 className="font-medium text-3xl">Shadcn-UI</h1>
-
-      <div className="listar mr-20">
-
-      <h1> Listar os Gestores </h1>
+    <div>
+      <h1>Create a Post</h1>
       <form onSubmit={handleSubmit}>
         <input 
           type="text" 
-          placeholder="Nome" 
-          value={nome} 
-          onChange={(e) => setNome(e.target.value)} 
+          placeholder="Title" 
+          value={title} 
+          onChange={(e) => setTitle(e.target.value)} 
           required 
         />
-        <input 
-          placeholder="Sexo" 
-          value={sexo} 
-          onChange={(e) => setSexo(e.target.value)} 
+        <textarea 
+          placeholder="Content" 
+          value={content} 
+          onChange={(e) => setContent(e.target.value)} 
           required 
         />
         <button type="submit">Submit</button>
@@ -76,17 +69,14 @@ export default function Home() {
 
       <h2>Posts</h2>
       <ul>
-        {posts.map(item => (
-          <li key={item.id}>
-            <h3>{item.nome}</h3>
-            <p>{item.sexo}</p>
-            <small>{new Date(item.created_at).toLocaleString()}</small>
+        {posts.map(post => (
+          <li key={post.id}>
+            <h3>{post.title}</h3>
+            <p>{post.content}</p>
+            <small>{new Date(post.created_at).toLocaleString()}</small>
           </li>
         ))}
       </ul>
-
-      </div>
-
-    </main>
+    </div>
   );
 }

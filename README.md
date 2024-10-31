@@ -85,3 +85,8 @@ https://www.youtube.com/watch?v=PqRe0Q9b5QI
 ##### conteúdo do side-bar
 ```
 ```
+
+##### Supabase
+```
+npm install @supabase/supabase-js
+```
