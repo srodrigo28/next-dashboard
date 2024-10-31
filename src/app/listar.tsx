@@ -68,7 +68,7 @@ export default function Listar() {
       </form>
 
       <h2>Posts</h2>
-      <ul>
+      <ul className='m-10 bg-blue-600'>
         {posts.map(post => (
           <li key={post.id}>
             <h3>{post.title}</h3>

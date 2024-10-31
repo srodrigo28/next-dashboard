@@ -75,15 +75,15 @@ export default function Home() {
       </form>
 
       <h2>Posts</h2>
-      <ul>
+      <div className='flex gap-2 flex-col '>
         {posts.map(item => (
-          <li key={item.id}>
+          <div key={item.id} className='bg-green-500 p-2 rounded-md text-white'>
             <h3>{item.nome}</h3>
             <p>{item.sexo}</p>
             <small>{new Date(item.created_at).toLocaleString()}</small>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
 
       </div>
 
