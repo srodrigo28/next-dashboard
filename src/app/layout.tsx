@@ -4,6 +4,9 @@ import "./globals.css";
 import { cn } from "@/lib/utils" // config
 import { Sidebar } from "@/components/sidebar";
 
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON;
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
