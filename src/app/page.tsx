@@ -57,12 +57,8 @@ export default function Home() {
   }, []);
 
   return (
-    <main className='p-5 px-28'>
-      <h1 className="font-medium text-3xl">Shadcn-UI</h1>
+    <main className='p-5 px-28 bg-slate-800 text-white flex flex-col items-center w-full'>
 
-      <div className="listar mr-20">
-
-      <h1> Listar os Gestores </h1>
       <form onSubmit={handleSubmit}>
         <input 
           type="text" 
@@ -80,10 +76,14 @@ export default function Home() {
         <button type="submit">Submit</button>
       </form>
 
+      <div className="listar mr-20 w-full">
+
+      <h1> Listar os Gestores </h1>
+
       <h2>Posts</h2>
-      <div className='flex gap-2 flex-col '>
+      <div className='flex gap-2 flex-col w-full '>
         {gestor.map( item => (
-          <div key={item.id} className='bg-green-500 p-2 rounded-md text-white'>
+          <div key={item.id} className='bg-green-500 p-2 rounded-md text-white w-full'>
             <h3>{item.nome}</h3>
             <p>{item.sexo}</p>
             <small>{new Date(item.created_at).toLocaleString()}</small>
