@@ -1,5 +1,8 @@
 #### Next Typescript e  Shadcn ui 🔥
 
+#### Preview
+<img src="./preview/home-v1.png" alt="">
+
 #### [x] Criando projeto
 *  Criando projeto
 ```

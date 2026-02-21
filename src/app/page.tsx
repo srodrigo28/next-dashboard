@@ -2,6 +2,7 @@
 
 import { createClient } from "@supabase/supabase-js";
 import { useEffect, useState } from "react";
+import { ChevronDown, Users } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -59,38 +60,73 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen w-full bg-slate-100 px-4 py-6 sm:px-6 lg:px-10">
+    <main className="min-h-screen w-full bg-gradient-to-b from-slate-100 to-slate-200/70 px-4 py-6 sm:px-6 lg:px-10">
       <section className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-6 lg:grid-cols-3">
-        <Card className="lg:col-span-1">
-          <CardHeader>
+        <div className="lg:col-span-3">
+          <Card className="border-slate-200 bg-white/90 shadow-sm backdrop-blur">
+            <CardContent className="flex items-center gap-3 p-4 sm:p-5">
+              <div className="rounded-full bg-slate-900 p-2 text-white">
+                <Users className="h-5 w-5" />
+              </div>
+              <div>
+                <p className="text-xs font-medium uppercase tracking-wide text-slate-500">Painel</p>
+                <h1 className="text-lg font-semibold text-slate-900 sm:text-xl">Cadastro de Gestores</h1>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        <Card className="border-slate-200 bg-white/95 shadow-sm lg:col-span-1">
+          <CardHeader className="space-y-1">
             <CardTitle>Cadastrar gestor</CardTitle>
             <CardDescription>Preencha os dados para criar um novo registro.</CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-3">
+              <label htmlFor="nome" className="text-sm font-medium text-slate-700">
+                Nome
+              </label>
               <Input
+                id="nome"
                 type="text"
                 placeholder="Nome"
                 value={nome}
                 onChange={(e) => setNome(e.target.value)}
                 required
+                className="border-slate-300 bg-white"
               />
-              <Input
-                type="text"
-                placeholder="Sexo"
-                value={sexo}
-                onChange={(e) => setSexo(e.target.value)}
-                required
-              />
-              <Button type="submit" className="w-full" disabled={loading}>
+
+              <div className="space-y-1">
+                <label htmlFor="sexo" className="text-sm font-medium text-slate-700">
+                  Sexo
+                </label>
+                <div className="relative">
+                  <select
+                    id="sexo"
+                    value={sexo}
+                    onChange={(e) => setSexo(e.target.value)}
+                    required
+                    className="h-10 w-full appearance-none rounded-md border border-slate-300 bg-white px-3 pr-10 text-sm text-slate-800 outline-none transition focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
+                  >
+                    <option value="" disabled>
+                      Selecione o sexo
+                    </option>
+                    <option value="Feminino">Feminino</option>
+                    <option value="Masculino">Masculino</option>
+                  </select>
+                  <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500" />
+                </div>
+              </div>
+
+              <Button type="submit" className="mt-2 w-full bg-slate-900 hover:bg-slate-800" disabled={loading}>
                 {loading ? "Salvando..." : "Salvar"}
               </Button>
             </form>
           </CardContent>
         </Card>
 
-        <Card className="lg:col-span-2">
-          <CardHeader>
+        <Card className="border-slate-200 bg-white/95 shadow-sm lg:col-span-2">
+          <CardHeader className="space-y-1">
             <CardTitle>Gestores cadastrados</CardTitle>
             <CardDescription>Listagem em ordem do mais recente para o mais antigo.</CardDescription>
           </CardHeader>
